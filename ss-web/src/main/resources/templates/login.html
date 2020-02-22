@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="_csrf" content="${_csrf.token}"/>
+    <!-- default header name is X-CSRF-TOKEN -->
+    <meta name="_csrf_header" content="${_csrf.headerName}"/>
+    <link href="https://cdn.bootcss.com/bootstrap/4.1.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/style/login.css}"/>
+</head>
+<body>
+<form class="form-signin" method="post" action="/login">
+    <div class="alert alert-danger" th:if="${session.SPRING_SECURITY_LAST_EXCEPTION}"
+         th:text="${session.SPRING_SECURITY_LAST_EXCEPTION.message}">
+    </div>
+    <div th:if="${param.logout}">
+        <div class="alert alert-info">
+            您已成功注销.
+        </div>
+    </div>
+    <div class="text-center mb-4">
+        <h1 class="h3 mb-3 font-weight-normal">用户登录</h1>
+    </div>
+
+    <div class="form-label-group">
+        <input type="text" id="username" name="username" class="form-control" placeholder="请输入用户名" value="admin"
+               required autofocus>
+        <label for="username">用户名</label>
+    </div>
+
+    <div class="form-label-group">
+        <input type="password" id="password" name="password" class="form-control" placeholder="请输入密码" value="123456"
+               required>
+        <label for="password">密码</label>
+    </div>
+
+    <div class="checkbox mb-3">
+        <label>
+            <input type="checkbox" name="remember-me"> 记住我
+        </label>
+    </div>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
+    <a th:href="@{/ipVerify}" class="btn btn-lg btn-primary btn-block" type="button">使用IP登陆</a>
+    <p class="mt-5 mb-3 text-muted text-center">&copy;SK.Loda 2020</p>
+</form>
+</body>
+</html>
