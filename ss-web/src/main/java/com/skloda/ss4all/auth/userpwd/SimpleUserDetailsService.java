@@ -15,9 +15,8 @@ public class SimpleUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         if (username.equals("admin")) {
             //假设返回的用户信息如下;
-            UserInfo userInfo = new UserInfo("admin", "123456", "ROLE_ADMIN", true, true, true, true);
-            return userInfo;
+            return new UserInfo("admin", "123456", "ROLE_ADMIN", true, true, true, true);
         }
-        return null;
+        throw new UsernameNotFoundException("user:" + username + " not found");
     }
 }

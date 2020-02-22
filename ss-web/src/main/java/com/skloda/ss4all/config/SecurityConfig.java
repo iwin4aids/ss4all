@@ -67,6 +67,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 //自定义一个异常处理器
                 .and().exceptionHandling().accessDeniedHandler(accessDeniedHandler)
                 //注册IpAuthenticationProcessingFilter  注意放置的顺序这很关键，UsernamePasswordAuthenticationFilter是SS内置的
+                //过滤器可以按需求添加，如添加验证码的过滤器
                 .and().addFilterBefore(ipAuthenticationProcessingFilter(authenticationManager()), UsernamePasswordAuthenticationFilter.class);
     }
 
