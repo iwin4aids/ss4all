@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 /**
  * 根据用户名加载用户主体信息的简单实现
  */
-@Component
+@Component("simpleUserDetailsService")
 public class SimpleUserDetailsService implements UserDetailsService {
 
     @Override

@@ -14,16 +14,17 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-@Component
-public class MyAuthenticationFailHander extends SimpleUrlAuthenticationFailureHandler {
+@Component("myAuthenticationFailHandler")
+public class MyAuthenticationFailHandler extends SimpleUrlAuthenticationFailureHandler {
 
     @Override
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
+        System.out.println("onAuthenticationFailure");
         if(HttpUtils.isAjaxRequest(request)) {
             // 以Json格式返回
             Map<String, String> map = new HashMap<>();
-            map.put("code", "201");
-            map.put("msg", "登录失败");
+            map.put("code", "-99");
+            map.put("msg", exception.getLocalizedMessage());
             response.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
             response.setContentType("application/json");
             response.setCharacterEncoding("UTF-8");

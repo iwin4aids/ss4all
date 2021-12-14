@@ -8,7 +8,7 @@ import java.util.Collection;
 /**
  * IP认证时使用的令牌
  */
-public class IpAuthenticationToken extends AbstractAuthenticationToken {
+public class IpAuthentication extends AbstractAuthenticationToken {
 
     private String ip;
 
@@ -20,13 +20,13 @@ public class IpAuthenticationToken extends AbstractAuthenticationToken {
         this.ip = ip;
     }
 
-    public IpAuthenticationToken(String ip) {
+    public IpAuthentication(String ip) {
         super(null);
         this.ip = ip;
         super.setAuthenticated(false);//注意这个构造方法是认证时使用的
     }
 
-    public IpAuthenticationToken(String ip, Collection<? extends GrantedAuthority> authorities) {
+    public IpAuthentication(String ip, Collection<? extends GrantedAuthority> authorities) {
         super(authorities);
         this.ip = ip;
         super.setAuthenticated(true);//注意这个构造方法是认证成功后使用的

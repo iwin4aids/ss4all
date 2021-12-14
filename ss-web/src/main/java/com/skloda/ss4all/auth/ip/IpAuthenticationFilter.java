@@ -13,10 +13,10 @@ import java.io.IOException;
 /**
  * 配置IP验证端点的过滤器
  */
-public class IpAuthenticationProcessingFilter extends AbstractAuthenticationProcessingFilter {
+public class IpAuthenticationFilter extends AbstractAuthenticationProcessingFilter {
 
     //使用/ipVerify该端点进行ip认证
-    public IpAuthenticationProcessingFilter(String pattern) {
+    public IpAuthenticationFilter(String pattern) {
         super(new AntPathRequestMatcher(pattern));
     }
 
@@ -25,6 +25,6 @@ public class IpAuthenticationProcessingFilter extends AbstractAuthenticationProc
         //获取host信息
         String host = request.getRemoteHost();
         //交给内部的AuthenticationManager去认证，实现解耦
-        return getAuthenticationManager().authenticate(new IpAuthenticationToken(host));
+        return getAuthenticationManager().authenticate(new IpAuthentication(host));
     }
 }

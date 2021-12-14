@@ -16,10 +16,16 @@ import java.util.Date;
 @Controller
 public class SomeResourceController {
 
-    @PostMapping("/time")
+    @PostMapping("/api/time")
     @ResponseBody
     public String getTime() {
         return "This is server time : " + new Date();
+    }
+
+    @PostMapping("/api/me")
+    @ResponseBody
+    public UserDetails getMe() {
+        return (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     }
 
     @GetMapping("/hello")
